@@ -1,0 +1,221 @@
+{
+  "project_info": {
+    "project_number": "846264121883",
+    "firebase_url": "https://twofour-fef75-default-rtdb.firebaseio.com",
+    "project_id": "twofour-fef75",
+    "storage_bucket": "twofour-fef75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:71758d9b0cfc77e21996be",
+        "android_client_info": {
+          "package_name": "com.example.firebaseflutterotp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:2035e315493965fb1996be",
+        "android_client_info": {
+          "package_name": "com.example.plat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:c6a8d9fcf726a9f51996be",
+        "android_client_info": {
+          "package_name": "kp.ran.kotlinfirebaseotp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:29c9716abb5349d51996be",
+        "android_client_info": {
+          "package_name": "ran.am.contactsadventure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      },
+      "admob_app_id": "ca-app-pub-5300816088056407~2537580456"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:39c31d49ef4da3721996be",
+        "android_client_info": {
+          "package_name": "ran.am.contactsadventureadminapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:539326eeb25adf851996be",
+        "android_client_info": {
+          "package_name": "tm.ran.aiikigai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:6195320a64b7a2181996be",
+        "android_client_info": {
+          "package_name": "tm.ran.munisapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:e4f5d68a9c6094421996be",
+        "android_client_info": {
+          "package_name": "tm.ran.parkingz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:456f54092606f6571996be",
+        "android_client_info": {
+          "package_name": "tm.ranjith.ailifementor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:7a135f2aee76fad21996be",
+        "android_client_info": {
+          "package_name": "tm.ranjith.findurpassion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846264121883:android:a8d0f304ce04a30f1996be",
+        "android_client_info": {
+          "package_name": "tm.ranjith.thoppairemover"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
