@@ -66,28 +66,49 @@ class QuestionsNotifier extends StateNotifier<QuestionsState> {
     loadSections();
   }
 
+// In QuestionsNotifier class
   Future<void> loadSections() async {
+    print("⭐ QuestionsNotifier: Starting to load sections");
     state = state.copyWith(isLoading: true);
 
     try {
+      print("⭐ QuestionsNotifier: Attempting to get sections from FirebaseService");
       final sections = await _firebaseService.getSections();
+      print("⭐ QuestionsNotifier: Got ${sections.length} sections from FirebaseService");
+
+      // Print each section for debugging
+      if (sections.isNotEmpty) {
+        sections.forEach((section) => print("⭐ Section: ${section.id} - ${section.title}"));
+      } else {
+        print("⭐ WARNING: No sections were returned from FirebaseService!");
+      }
+
       state = state.copyWith(
         sections: sections,
         isLoading: false,
       );
+      print("⭐ QuestionsNotifier: Sections loaded into state");
     } catch (e) {
+      print("❌ QuestionsNotifier: Error loading sections: $e");
       state = state.withError('Failed to load sections: $e');
     }
   }
 
   // Get filterable sections based on user subscription
+  // Add print statement to availableSectionsProvider or add this to getAvailableSections method
   List<Section> getAvailableSections() {
     final isPremium = _authState.user?.isPremium ?? false;
 
+    final allSections = state.sections;
+    print("📱 getAvailableSections: All sections count: ${allSections.length}");
+
     if (isPremium) {
-      return state.sections;
+      print("📱 User is premium, showing all sections");
+      return allSections;
     } else {
-      return state.freeSections;
+      final freeSections = allSections.where((section) => !section.isPremium).toList();
+      print("📱 User is NOT premium, showing ${freeSections.length} free sections");
+      return freeSections;
     }
   }
 

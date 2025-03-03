@@ -116,20 +116,44 @@ class Section {
 
   // Create from Firestore document
   factory Section.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return Section(
-      id: doc.id,
-      title: data['title'] ?? '',
-      description: data['description'] ?? '',
-      iconName: data['iconName'] ?? 'help_outline',
-      questions: (data['questions'] as List)
-          .map((q) => Question.fromMap(q))
-          .toList(),
-      isPremium: data['isPremium'] ?? false,
-      order: data['order'] ?? 0,
-      createdAt: (data['createdAt'] as Timestamp).toDate(),
-      updatedAt: (data['updatedAt'] as Timestamp).toDate(),
-    );
+    print("🔍 Converting Firestore doc to Section: ${doc.id}");
+    try {
+      final data = doc.data() as Map<String, dynamic>;
+
+      // Print the raw questions data to check format
+      print("🔍 Questions data type: ${data['questions'].runtimeType}");
+      print("🔍 Questions data: ${data['questions']}");
+
+      final questions = (data['questions'] as List?)
+          ?.map((q) => Question.fromMap(q as Map<String, dynamic>))
+          .toList() ?? [];
+
+      print("🔍 Converted ${questions.length} questions");
+
+      return Section(
+        id: doc.id,
+        title: data['title'] ?? '',
+        description: data['description'] ?? '',
+        iconName: data['iconName'] ?? 'help_outline',
+        questions: questions,
+        isPremium: data['isPremium'] ?? false,
+        order: data['order'] ?? 0,
+        createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+        updatedAt: (data['updatedAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      );
+    } catch (e) {
+      print("❌ Error creating Section from Firestore: $e");
+      // Return empty section instead of throwing
+      return Section(
+        id: doc.id,
+        title: "Error loading section",
+        description: "There was an error loading this section: $e",
+        iconName: 'error',
+        questions: [],
+        isPremium: false,
+        order: 999,
+      );
+    }
   }
 
   // Copy with

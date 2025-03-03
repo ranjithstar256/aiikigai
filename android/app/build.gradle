@@ -47,10 +47,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.0' // Add this line
     // Other dependencies
     // Firebase SDK for Firestore
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.1'
-    implementation 'androidx.browser:browser:1.2.0'
-    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.3"
-    implementation platform('com.google.firebase:firebase-bom:32.3.1') // Latest BOM
+    implementation 'com.google.firebase:firebase-firestore-ktx:25.1.2'
+    implementation 'androidx.browser:browser:1.8.0'
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.1.5"
+    implementation platform('com.google.firebase:firebase-bom:33.10.0') // Latest BOM
     implementation 'com.google.firebase:firebase-messaging'
 }
 

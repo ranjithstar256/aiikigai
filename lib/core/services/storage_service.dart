@@ -19,7 +19,8 @@ class StorageService {
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   // Save data to shared preferences
-  Future<void> saveToPrefs({required String key, required dynamic value}) async {
+  Future<void> saveToPrefs(
+      {required String key, required dynamic value}) async {
     final prefs = await SharedPreferences.getInstance();
 
     if (value is String) {
@@ -85,7 +86,8 @@ class StorageService {
   }
 
   // Save to secure storage
-  Future<void> saveToSecureStorage({required String key, required String value}) async {
+  Future<void> saveToSecureStorage(
+      {required String key, required String value}) async {
     await _secureStorage.write(key: key, value: value);
   }
 
@@ -235,8 +237,8 @@ class StorageService {
     }
   }
 
-  // Get temporary directory
-  Future<Directory> getTemporaryDirectory() async {
+// Get temporary directory
+  Future<Directory> getTempDirectory() async {
     return await getTemporaryDirectory();
   }
 
