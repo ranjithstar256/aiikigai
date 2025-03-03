@@ -28,6 +28,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
     // Log screen view
     ref.read(analyticsServiceProvider).logScreenView('home_screen');
+
+    // Add this to load sections when screen first appears
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(questionsProvider.notifier).loadSections().then((_) {
+        // Force rebuild after sections are loaded
+        if (mounted) setState(() {});
+      });
+    });
   }
 
   void _navigateToSection(Section section) {
