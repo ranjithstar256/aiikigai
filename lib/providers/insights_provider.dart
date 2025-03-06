@@ -137,12 +137,20 @@ class InsightsNotifier extends StateNotifier<InsightsState> {
         await _firebaseService.saveInsight(insight);
       }
 
-      state = state.copyWith(
-        insight: insight,
-        isGenerating: false,
-      );
+      Future.microtask(() {
+        if (mounted) {
+          state = state.copyWith(
+            insight: insight,
+            isGenerating: false,
+          );
+        }
+      });
     } catch (e) {
-      state = state.withError('Failed to generate insight: $e');
+      Future.microtask(() {
+        if (mounted) {
+          state = state.withError('Failed to generate insight: $e');
+        }
+      });
     }
   }
 

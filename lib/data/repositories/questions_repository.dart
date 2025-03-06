@@ -101,6 +101,9 @@ class QuestionsRepository {
       return [];
     }
   }*/
+
+/*
+  //b4 deepthinkning code
   Future<List<Section>> _getFirestoreSections() async {
     try {
       print("Attempting to get sections from Firestore");
@@ -130,6 +133,40 @@ class QuestionsRepository {
     } catch (e) {
       print("Error getting sections from Firestore: $e");
       // Return empty list and fall back to local cache
+      return [];
+    }
+  }
+*/
+
+  Future<List<Section>> _getFirestoreSections() async {
+    try {
+      print("Retrieving sections from Firestore...");
+      final snapshot = await _sectionsCollection.orderBy('order').get();
+
+      print("Retrieved ${snapshot.docs.length} section documents from Firestore");
+
+      if (snapshot.docs.isEmpty) {
+        print("No sections found in Firestore, will use default sections");
+        return [];
+      }
+
+      List<Section> sections = [];
+      for (var doc in snapshot.docs) {
+        try {
+          final section = Section.fromFirestore(doc);
+          sections.add(section);
+          print("Successfully parsed section: ${section.id} - ${section.title} with ${section.questions.length} questions");
+        } catch (e) {
+          print("Error parsing section document ${doc.id}: $e");
+          // Continue to next document
+        }
+      }
+
+      print("Successfully processed ${sections.length} out of ${snapshot.docs.length} sections");
+      return sections;
+    } catch (e) {
+      print("Error retrieving sections from Firestore: $e");
+      // Return empty list and fall back to local cache or defaults
       return [];
     }
   }

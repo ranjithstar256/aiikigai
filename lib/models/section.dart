@@ -155,6 +155,8 @@ class Section {
       );
     }
   }*/
+
+/*  //b4 deep thinking code
   factory Section.fromFirestore(DocumentSnapshot doc) {
     print("Converting Firestore doc to Section: ${doc.id}");
     try {
@@ -189,6 +191,50 @@ class Section {
         id: doc.id,
         title: "Error loading section",
         description: "There was an error loading this section: $e",
+        iconName: 'error',
+        questions: [],
+        isPremium: false,
+        order: 999,
+      );
+    }
+  }*/
+
+  factory Section.fromFirestore(DocumentSnapshot doc) {
+    try {
+      final data = doc.data() as Map<String, dynamic>;
+
+      // Handle questions data safely
+      List<Question> questions = [];
+      if (data['questions'] != null) {
+        if (data['questions'] is List) {
+          questions = (data['questions'] as List)
+              .where((q) => q is Map<String, dynamic>)
+              .map((q) => Question.fromMap(q as Map<String, dynamic>))
+              .toList();
+        } else {
+          print("Warning: 'questions' field is not a List: ${data['questions'].runtimeType}");
+        }
+      } else {
+        print("Warning: 'questions' field is missing in section document: ${doc.id}");
+      }
+
+      return Section(
+        id: doc.id,
+        title: data['title'] ?? 'Untitled Section',
+        description: data['description'] ?? 'No description provided',
+        iconName: data['iconName'] ?? 'help_outline',
+        questions: questions,
+        isPremium: data['isPremium'] ?? false,
+        order: data['order'] ?? 999,
+        createdAt: data['createdAt'] != null ? (data['createdAt'] as Timestamp).toDate() : DateTime.now(),
+        updatedAt: data['updatedAt'] != null ? (data['updatedAt'] as Timestamp).toDate() : DateTime.now(),
+      );
+    } catch (e) {
+      print("Error creating Section from Firestore: $e");
+      return Section(
+        id: doc.id,
+        title: "Error loading section",
+        description: "There was an error loading this section. Please try again later.",
         iconName: 'error',
         questions: [],
         isPremium: false,

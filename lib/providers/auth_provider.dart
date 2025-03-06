@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/services/firebase_service.dart';
@@ -64,6 +65,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+// Example of more granular error handling
   Future<void> signIn(String email, String password) async {
     state = state.copyWith(isLoading: true);
     try {
@@ -74,13 +76,25 @@ class AuthNotifier extends StateNotifier<AuthState> {
           isLoading: false,
         );
       } else {
-        state = state.withError('Sign in failed: No user returned');
+        // More specific error handling
+        state = state.withError('Invalid credentials or account does not exist');
+      }
+    } on FirebaseAuthException catch (e) {
+      // Handle specific Firebase authentication errors
+      switch (e.code) {
+        case 'user-not-found':
+          state = state.withError('No user found with this email');
+          break;
+        case 'wrong-password':
+          state = state.withError('Incorrect password');
+          break;
+        default:
+          state = state.withError('Authentication failed: ${e.message}');
       }
     } catch (e) {
-      state = state.withError('Sign in failed: $e');
+      state = state.withError('Unexpected error during sign-in');
     }
   }
-
   Future<void> signUp(String name, String email, String password) async {
     state = state.copyWith(isLoading: true);
     try {

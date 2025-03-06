@@ -30,12 +30,12 @@ class AnalyticsService {
     );
   }
 
-  // Track insight generation
+// Track insight generation
   Future<void> logInsightGenerated(bool isPremium) async {
     await analytics.logEvent(
       name: 'insight_generated',
       parameters: {
-        'is_premium': isPremium,
+        'is_premium': isPremium ? 1 : 0, // Convert boolean to integer
       },
     );
   }

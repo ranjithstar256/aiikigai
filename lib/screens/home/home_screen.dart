@@ -147,7 +147,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final completedCount = ref.watch(completedSectionsCountProvider);
 
     // Get premium status
-    final isPremium = ref.watch(authProvider).user?.isPremium ?? true;
+    final isPremium = true;//ref.watch(authProvider).user?.isPremium ?? true;
 
     // Loading state
     final isLoading = ref.watch(questionsProvider).isLoading;
@@ -242,7 +242,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
                 // In your HomeScreen build method
-                ElevatedButton(
+                /*ElevatedButton(
                   onPressed: _testFirebaseConnection,
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
@@ -257,7 +257,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       fontSize: 18,
                     ),
                   ),
-                )
+                )*/
               ])
             ),
           ],
@@ -268,6 +268,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   // New method to test Firebase connectivity by saving dummy sections
   // Test Firebase connection by saving dummy sections
+  /*//b4 deep thinkng code
   Future<void> _testFirebaseConnection() async {
     try {
       print("Starting Firebase connection test...");
@@ -292,5 +293,50 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         SnackBar(content: Text('Firebase test error: $e')),
       );
     }
-  }
+  }*/
+
+ /* Future<void> _testFirebaseConnection() async {
+    try {
+      print("Starting Firebase connection test...");
+
+      // Try to read from Firestore
+      final sectionsCollection = FirebaseFirestore.instance.collection('sections');
+      print("Attempting to query 'sections' collection...");
+
+      final snapshot = await sectionsCollection.limit(5).get();
+
+      print("Successfully connected to Firestore!");
+      print("Found ${snapshot.docs.length} sections in the database");
+
+      if (snapshot.docs.isNotEmpty) {
+        // Print the first document structure to debug
+        final firstDoc = snapshot.docs.first;
+        print("Sample document ID: ${firstDoc.id}");
+        print("Sample document fields: ${firstDoc.data().keys.join(', ')}");
+
+        // Check for questions field
+        if (firstDoc.data().containsKey('questions')) {
+          final questions = firstDoc.data()['questions'];
+          print("Questions field type: ${questions.runtimeType}");
+          if (questions is List) {
+            print("Questions count: ${questions.length}");
+            if (questions.isNotEmpty) {
+              print("First question structure: ${questions.first.runtimeType}");
+            }
+          }
+        } else {
+          print("WARNING: 'questions' field is missing in the document!");
+        }
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Firebase test successful! Check console for details.'))
+      );
+    } catch (e) {
+      print("Error in Firebase test: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Firebase test error: $e'))
+      );
+    }
+  }*/
 }

@@ -94,8 +94,9 @@ class QuestionsNotifier extends StateNotifier<QuestionsState> {
     }
   }
 
-  // Get filterable sections based on user subscription
+ /* // Get filterable sections based on user subscription
   // Add print statement to availableSectionsProvider or add this to getAvailableSections method
+//b4 deep thinkning code
   List<Section> getAvailableSections() {
     final isPremium = _authState.user?.isPremium ?? false;
 
@@ -111,7 +112,35 @@ class QuestionsNotifier extends StateNotifier<QuestionsState> {
       return freeSections;
     }
   }
+*/
 
+  List<Section> getAvailableSections() {
+    final isPremium = _authState.user?.isPremium ?? false;
+    final allSections = state.sections;
+
+    // Force UI update by ensuring this happens after sections are loaded
+    if (allSections.isEmpty) {
+      return [];
+    }
+
+    print("📱 getAvailableSections: All sections count: ${allSections.length}");
+
+    if (isPremium) {
+      print("📱 User is premium, showing all sections");
+      return allSections;
+    } else {
+      final freeSections = allSections.where((section) => !section.isPremium).toList();
+      print("📱 User is NOT premium, showing ${freeSections.length} free sections");
+
+      // If no free sections, show all sections but mark them as locked
+      if (freeSections.isEmpty) {
+        print("📱 No free sections found, will show all sections as locked");
+        return allSections;
+      }
+
+      return freeSections;
+    }
+  }
   Section? getSectionById(String id) {
     return state.getSectionById(id);
   }
@@ -128,10 +157,41 @@ final questionsProvider = StateNotifierProvider<QuestionsNotifier, QuestionsStat
   return QuestionsNotifier(firebaseService, authState);
 });
 
-// Simple provider for getting available sections filtered by subscription
+// // Simple provider for getting available sections filtered by subscription
+// final availableSectionsProvider = Provider<List<Section>>((ref) {
+//   final questionsNotifier = ref.watch(questionsProvider.notifier);
+//   return questionsNotifier.getAvailableSections();
+// });
+
 final availableSectionsProvider = Provider<List<Section>>((ref) {
-  final questionsNotifier = ref.watch(questionsProvider.notifier);
-  return questionsNotifier.getAvailableSections();
+  // Watch the questions state to get updates when sections are loaded
+  final questionsState = ref.watch(questionsProvider);
+  // Watch auth state to get premium status
+  final authState = ref.watch(authProvider);
+
+  final allSections = questionsState.sections;
+
+  // For debugging
+  print("📱 availableSectionsProvider: All sections count: ${allSections.length}");
+
+  // Use your hardcoded premium flag from HomeScreen or get from auth
+  final isPremium = true; // You can change this to use authState if needed
+
+  if (isPremium) {
+    print("📱 User is premium, showing all sections");
+    return allSections;
+  } else {
+    final freeSections = allSections.where((section) => !section.isPremium).toList();
+    print("📱 User is NOT premium, showing ${freeSections.length} free sections");
+
+    // If no free sections, return all sections but they'll be displayed as locked
+    if (freeSections.isEmpty && allSections.isNotEmpty) {
+      print("📱 No free sections found, showing all sections as locked");
+      return allSections;
+    }
+
+    return freeSections;
+  }
 });
 
 // Provider for getting a section by ID
