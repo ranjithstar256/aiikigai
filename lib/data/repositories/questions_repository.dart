@@ -85,7 +85,7 @@ class QuestionsRepository {
   }
 
   // Get sections from Firestore
-  Future<List<Section>> _getFirestoreSections() async {
+/*  Future<List<Section>> _getFirestoreSections() async {
     try {
       final snapshot = await _sectionsCollection.orderBy('order').get();
 
@@ -98,6 +98,38 @@ class QuestionsRepository {
       }).toList();
     } catch (e) {
       // If there's an error with Firestore, return empty list and fall back to local cache
+      return [];
+    }
+  }*/
+  Future<List<Section>> _getFirestoreSections() async {
+    try {
+      print("Attempting to get sections from Firestore");
+      final snapshot = await _sectionsCollection.orderBy('order').get();
+
+      print("Firestore returned ${snapshot.docs.length} section documents");
+
+      if (snapshot.docs.isEmpty) {
+        print("No sections found in Firestore");
+        return [];
+      }
+
+      // Print each document to debug
+      for (var doc in snapshot.docs) {
+        print("Document ID: ${doc.id}");
+        print("Document data: ${doc.data()}");
+      }
+
+      return snapshot.docs.map((doc) {
+        try {
+          return Section.fromFirestore(doc);
+        } catch (e) {
+          print("Error parsing section document ${doc.id}: $e");
+          return null;
+        }
+      }).where((section) => section != null).cast<Section>().toList();
+    } catch (e) {
+      print("Error getting sections from Firestore: $e");
+      // Return empty list and fall back to local cache
       return [];
     }
   }

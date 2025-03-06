@@ -115,7 +115,7 @@ class Section {
   }
 
   // Create from Firestore document
-  factory Section.fromFirestore(DocumentSnapshot doc) {
+/*  factory Section.fromFirestore(DocumentSnapshot doc) {
     print("🔍 Converting Firestore doc to Section: ${doc.id}");
     try {
       final data = doc.data() as Map<String, dynamic>;
@@ -154,8 +154,48 @@ class Section {
         order: 999,
       );
     }
-  }
+  }*/
+  factory Section.fromFirestore(DocumentSnapshot doc) {
+    print("Converting Firestore doc to Section: ${doc.id}");
+    try {
+      final data = doc.data() as Map<String, dynamic>;
 
+      // Debug print the raw questions data
+      print("Raw questions data: ${data['questions']}");
+
+      // Make sure questions is an actual List before mapping
+      List<Question> questions = [];
+      if (data['questions'] != null && data['questions'] is List) {
+        questions = (data['questions'] as List)
+            .map((q) => Question.fromMap(q as Map<String, dynamic>))
+            .toList();
+      } else {
+        print("WARNING: Questions data is missing or not a list: ${data['questions']}");
+      }
+
+      return Section(
+        id: doc.id,
+        title: data['title'] ?? '',
+        description: data['description'] ?? '',
+        iconName: data['iconName'] ?? 'help_outline',
+        questions: questions,
+        isPremium: data['isPremium'] ?? false,
+        order: data['order'] ?? 0,
+      );
+    } catch (e) {
+      print("Error creating Section from Firestore: $e");
+      // Return empty section instead of throwing
+      return Section(
+        id: doc.id,
+        title: "Error loading section",
+        description: "There was an error loading this section: $e",
+        iconName: 'error',
+        questions: [],
+        isPremium: false,
+        order: 999,
+      );
+    }
+  }
   // Copy with
   Section copyWith({
     String? id,

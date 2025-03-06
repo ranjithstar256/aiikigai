@@ -271,125 +271,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Future<void> _testFirebaseConnection() async {
     try {
       print("Starting Firebase connection test...");
-      final firebaseService = ref.read(firebaseServiceProvider);
 
-      // Create dummy sections directly here instead of accessing the private method
-      final dummySections = [
-        Section(
-          id: 'love',
-          title: 'Finding What You Love ❤️',
-          description: 'Explore your deepest passions.',
-          iconName: 'favorite',
-          questions: [
-            Question(
-              id: 'q1',
-              text: 'Imagine you wake up tomorrow, and you have unlimited money & time for the next 10 years. What would you spend your days doing?',
-            ),
-            Question(
-              id: 'q2',
-              text: 'A genie appears and says, "You can only do one activity for the rest of your life—but it will make you incredibly happy." What do you choose?',
-            ),
-          ],
-          isPremium: false,
-          order: 1,
-        ),
-        Section(
-          id: 'strengths',
-          title: 'Discovering Your Strengths 💪',
-          description: 'Uncover your natural talents.',
-          iconName: 'star',
-          questions: [
-            Question(
-              id: 'q1',
-              text: 'You are in a survival game where each person must contribute a unique skill to win. What skill do you offer?',
-            ),
-            Question(
-              id: 'q2',
-              text: 'Your closest friends need urgent help with something—something only YOU can do better than anyone else. What is it?',
-            ),
-          ],
-          isPremium: false,
-          order: 2,
-        ),
-        Section(
-          id: 'world_needs',
-          title: 'What the World Needs 🌍',
-          description: 'Make a meaningful impact.',
-          iconName: 'public',
-          questions: [
-            Question(
-              id: 'q1',
-              text: 'You are given the power to solve ONE major global issue instantly. What problem do you fix?',
-            ),
-            Question(
-              id: 'q2',
-              text: 'If a billionaire gave you unlimited resources to improve the world in ONE way, what would you do?',
-            ),
-          ],
-          isPremium: false,
-          order: 3,
-        ),
-        Section(
-          id: 'paid_for',
-          title: 'What You Can Be Paid For 💰',
-          description: 'Turn skills into opportunities.',
-          iconName: 'attach_money',
-          questions: [
-            Question(
-              id: 'q1',
-              text: 'If you were suddenly forced to earn money using ONLY your knowledge & talents, how would you do it?',
-            ),
-            Question(
-              id: 'q2',
-              text: 'A new "Talent Auction" is created where companies bid for the best skills. What skill would companies bid the highest amount for in YOU?',
-            ),
-          ],
-          isPremium: false,
-          order: 4,
-        ),
-      ];
-
-      print("Created ${dummySections.length} default sections");
-
-      // Reference to the Firestore sections collection
+      // First, try to read from Firestore to check if you can access the database
       final sectionsCollection = FirebaseFirestore.instance.collection('sections');
+      final snapshot = await sectionsCollection.get();
 
-      // Save each section to Firestore
-      for (var section in dummySections) {
-        print("Saving section: ${section.id}");
-        await sectionsCollection.doc(section.id).set({
-          'id': section.id,
-          'title': section.title,
-          'description': section.description,
-          'iconName': section.iconName,
-          'questions': section.questions.map((q) => {
-            'id': q.id,
-            'text': q.text,
-            'order': q.order,
-          }).toList(),
-          'isPremium': section.isPremium,
-          'order': section.order,
-          'createdAt': FieldValue.serverTimestamp(),
-          'updatedAt': FieldValue.serverTimestamp(),
-        });
-        print("Saved section: ${section.id} to Firestore");
+      print("Successfully connected to Firestore!");
+      print("Found ${snapshot.docs.length} sections in the database");
+
+      if (snapshot.docs.isNotEmpty) {
+        // Print the first document to see its structure
+        print("Sample document data: ${snapshot.docs.first.data()}");
       }
 
-      // Refresh sections after saving
-      await ref.read(questionsProvider.notifier).loadSections();
-      print("Sections reloaded after saving dummy data");
-
-      // Add this line to force a rebuild
-      setState(() {});
-      print("Sections reloaded after saving dummy data");
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sections successfully saved to Firebase!')),
-      );
+      // Rest of your existing code to save sections...
+      // ...
     } catch (e) {
-      print("Error saving sections to Firebase: $e");
+      print("Error in Firebase test: $e");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to save sections: $e')),
+        SnackBar(content: Text('Firebase test error: $e')),
       );
     }
   }
