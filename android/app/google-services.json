@@ -13,7 +13,12 @@
           "package_name": "com.example.firebaseflutterotp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -21,26 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:846264121883:android:2035e315493965fb1996be",
-        "android_client_info": {
-          "package_name": "com.example.plat"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -51,7 +42,20 @@
           "package_name": "kp.ran.kotlinfirebaseotp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-q7lmkej4noqg0gj82sebvka3h0t6e92l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kp.ran.kotlinfirebaseotp",
+            "certificate_hash": "b90b46677c4e433574c51dcf3aa175ece226d038"
+          }
+        },
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -59,7 +63,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -70,7 +79,36 @@
           "package_name": "ran.am.contactsadventure"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-61bd1g0mraemo12mh2nqbql9kk8amiq9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ran.am.contactsadventure",
+            "certificate_hash": "b90b46677c4e433574c51dcf3aa175ece226d038"
+          }
+        },
+        {
+          "client_id": "846264121883-njsbermvq454lb19cs8aq3h31kv03daq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ran.am.contactsadventure",
+            "certificate_hash": "8fd81b6039194b60498147bede276d14384b389e"
+          }
+        },
+        {
+          "client_id": "846264121883-q5nanlsp80lnbqsldktgq91ek6p63020.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ran.am.contactsadventure",
+            "certificate_hash": "4fb5757471138c9ec787c9b25d7692dc351f06a9"
+          }
+        },
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -78,7 +116,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       },
       "admob_app_id": "ca-app-pub-5300816088056407~2537580456"
@@ -90,7 +133,12 @@
           "package_name": "ran.am.contactsadventureadminapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -98,7 +146,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -109,7 +162,20 @@
           "package_name": "tm.ran.aiikigai"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-6mgme2q053qpgob03pmni66sgkjsihng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tm.ran.aiikigai",
+            "certificate_hash": "b90b46677c4e433574c51dcf3aa175ece226d038"
+          }
+        },
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -117,26 +183,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:846264121883:android:6195320a64b7a2181996be",
-        "android_client_info": {
-          "package_name": "tm.ran.munisapp"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -147,7 +199,12 @@
           "package_name": "tm.ran.parkingz"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -155,7 +212,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -166,7 +228,12 @@
           "package_name": "tm.ranjith.ailifementor"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -174,7 +241,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -185,7 +257,12 @@
           "package_name": "tm.ranjith.findurpassion"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
@@ -193,26 +270,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:846264121883:android:a8d0f304ce04a30f1996be",
-        "android_client_info": {
-          "package_name": "tm.ranjith.thoppairemover"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCf2hZg6Un7CqcFZvNQfQ_EfcN8yO4CV_s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846264121883-f9smf378ohuujgh47i4c7mkn5d539n93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

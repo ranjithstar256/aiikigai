@@ -251,35 +251,43 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   // Remember me
                                   Row(
                                     children: [
-                                      Checkbox(
-                                        value: _rememberMe,
-                                        onChanged: isLoading
-                                            ? null
-                                            : (value) {
-                                          setState(() {
-                                            _rememberMe = value ?? false;
-                                          });
-                                        },
+                                      Transform.scale(
+                                        scale: 0.9, // Slightly smaller checkbox
+                                        child: Checkbox(
+                                          value: _rememberMe,
+                                          onChanged: isLoading
+                                              ? null
+                                              : (value) {
+                                            setState(() {
+                                              _rememberMe = value ?? false;
+                                            });
+                                          },
+                                        ),
                                       ),
                                       Text(
                                         'Remember me',
                                         style: GoogleFonts.lato(
-                                          fontSize: 14,
+                                          fontSize: 13, // Slightly smaller font
                                         ),
                                       ),
                                     ],
                                   ),
 
                                   // Forgot password
-                                  TextButton(
-                                    onPressed: isLoading
-                                        ? null
-                                        : _navigateToForgotPassword,
-                                    child: Text(
-                                      'Forgot Password?',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
+                                  Flexible(
+                                    child: TextButton(
+                                      onPressed: isLoading
+                                          ? null
+                                          : _navigateToForgotPassword,
+                                      style: TextButton.styleFrom(
+                                        padding: EdgeInsets.symmetric(horizontal: 8), // Reduced padding
+                                      ),
+                                      child: Text(
+                                        'Forgot Password?',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 13, // Slightly smaller font
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -371,7 +379,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           'Don\'t have an account?',
                           style: GoogleFonts.lato(
                             fontSize: 14,
-                            color: Colors.white.withOpacity(0.8),
+                            color: theme.primaryColor.withOpacity(0.8),
                           ),
                         ),
                         TextButton(
@@ -381,7 +389,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             style: GoogleFonts.lato(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: theme.primaryColor,
                             ),
                           ),
                         ),
@@ -397,7 +405,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         'Continue as Guest',
                         style: GoogleFonts.lato(
                           fontSize: 14,
-                          color: Colors.white.withOpacity(0.8),
+                          color: theme.primaryColor.withOpacity(0.8),
                         ),
                       ),
                     ),
