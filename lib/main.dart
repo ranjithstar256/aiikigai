@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
 import 'core/config/firebase_options.dart';
 import 'core/services/analytics_service.dart';
+import 'core/services/error_service.dart';
 import 'data/services/firebase_service.dart'; // Already imported, ensures sharedPreferencesProvider is available
 
 void main() async {
@@ -20,12 +21,14 @@ void main() async {
 
   await dotenv.load(fileName: ".env");
 
+  String? firebaseErrorMessage;
   try {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    print("Firebase initialized successfully");
+    errorService.logInfo("Firebase initialized successfully");
   } catch (e) {
-    print("Error initializing Firebase: $e");
+    firebaseErrorMessage = errorService.handleFirebaseInitError(e);
   }
+
   final firebaseService = FirebaseService();
   await firebaseService.initialize();
 
@@ -41,7 +44,10 @@ void main() async {
         sharedPreferencesProvider.overrideWithValue(prefs), // Now resolved via import
         analyticsServiceProvider.overrideWithValue(analyticsService),
       ],
-      child: IkigaiApp(isFirstRun: isFirstRun),
+      child: IkigaiApp(
+        isFirstRun: isFirstRun,
+        firebaseErrorMessage: firebaseErrorMessage,
+      ),
     ),
   );
 }

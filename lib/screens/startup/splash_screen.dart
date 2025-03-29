@@ -1,22 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../app.dart';
 import '../../core/services/analytics_service.dart';
 import '../../providers/auth_provider.dart';
-void main() async {
-  // Ensure Flutter is initialized
-  WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
-  await Firebase.initializeApp();
-
-  // Run the app
-  runApp(MaterialApp(home: SplashScreen()));
-}
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -29,6 +20,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
+  String? errorMessage;
 
   @override
   void initState() {
@@ -51,8 +43,18 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     // Log app open
     ref.read(analyticsServiceProvider).logAppOpen();
 
-    // Navigate after delay
-    _navigateAfterDelay();
+    // Check for Firebase error
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final parentWidget = context.findAncestorWidgetOfExactType<IkigaiApp>();
+      if (parentWidget?.firebaseErrorMessage != null) {
+        setState(() {
+          errorMessage = parentWidget!.firebaseErrorMessage;
+        });
+      } else {
+        // Only navigate if there's no error
+        _navigateAfterDelay();
+      }
+    });
   }
 
   Future<void> _navigateAfterDelay() async {
@@ -120,20 +122,36 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "Find where your passion, talent, purpose, and opportunities meet.",
+                  errorMessage ?? "Find where your passion, talent, purpose, and opportunities meet.",
                   style: GoogleFonts.lato(
                     fontSize: 16,
-                    color: Colors.white70,
+                    color: errorMessage != null ? Colors.red[100] : Colors.white70,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40),
-                FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: const CircularProgressIndicator(
-                    color: Colors.white,
+                if (errorMessage == null)
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: const CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                else
+                  ElevatedButton(
+                    onPressed: () {
+                      // Restart app or retry initialization
+                      setState(() {
+                        errorMessage = null;
+                      });
+                      _navigateAfterDelay();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: theme.primaryColor,
+                    ),
+                    child: const Text("Retry"),
                   ),
-                ),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(20.0),

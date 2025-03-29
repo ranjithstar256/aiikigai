@@ -147,7 +147,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final completedCount = ref.watch(completedSectionsCountProvider);
 
     // Get premium status
-    final isPremium = true;//ref.watch(authProvider).user?.isPremium ?? true;
+    final isPremium = ref.watch(authProvider).user?.isPremium ?? false;
 
     // Loading state
     final isLoading = ref.watch(questionsProvider).isLoading;

@@ -19,10 +19,12 @@ import 'screens/startup/splash_screen.dart';
 
 class IkigaiApp extends ConsumerWidget {
   final bool isFirstRun;
+  final String? firebaseErrorMessage;
 
   const IkigaiApp({
     Key? key,
     required this.isFirstRun,
+    this.firebaseErrorMessage,
   }) : super(key: key);
 
   @override
